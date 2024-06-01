@@ -63,8 +63,8 @@ function DashboardTab() {
                   >
                     {" "}
                     <div className="flex gap-2 items-center">
-                      <Link to={"/addproduct"}>
-                        Add Product <FaCartPlus size={20} />
+                      <Link to={"/addproduct"} className="flex">
+                        Add Product <FaCartPlus size={20} className="ml-2" />
                       </Link>
                     </div>
                   </button>

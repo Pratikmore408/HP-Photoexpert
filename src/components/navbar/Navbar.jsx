@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import myContext from "../../context/data/myContext"; // Importing context
 import { BsFillCloudSunFill } from "react-icons/bs";
 import { FiSun } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { useSelector } from "react-redux"; // Importing useSelector from Redux
@@ -10,12 +10,13 @@ import { useSelector } from "react-redux"; // Importing useSelector from Redux
 function Navbar() {
   const context = useContext(myContext); // Using useContext to access the context
   const { mode, toggleMode } = context; // Destructuring mode and toggleMode from the context
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user")); // Retrieving user data from localStorage
 
   const logout = () => {
     localStorage.clear("user"); // Clearing user data from localStorage
-    window.location.href = "/login"; // Redirecting to login page after logout
+    navigate("/login"); // Redirecting to login page after logout
   };
 
   const cartItems = useSelector((state) => state.cart); // Using Redux's useSelector to get cart items
@@ -34,7 +35,7 @@ function Navbar() {
           <div className="">
             <div className="flex h-16 items-center">
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
+              <div className="ml-4 flex lg:ml-0 ">
                 <Link to={"/"} className="flex">
                   <div className="flex">
                     <h1
@@ -52,7 +53,7 @@ function Navbar() {
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <Link
                     to={"/"}
-                    className="text-sm font-medium text-gray-700"
+                    className="text-sm font-medium text-gray-700 hover:text-violet-600"
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     All Products
@@ -60,7 +61,7 @@ function Navbar() {
                   {user ? (
                     <Link
                       to={"/order"}
-                      className="text-sm font-medium text-gray-700"
+                      className="text-sm font-medium text-gray-700 hover:text-violet-600"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Order
@@ -68,7 +69,7 @@ function Navbar() {
                   ) : (
                     <Link
                       to={"/signup"}
-                      className="text-sm font-medium text-gray-700"
+                      className="text-sm font-medium text-gray-700 hover:text-violet-600"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Signup
@@ -78,7 +79,7 @@ function Navbar() {
                   {user?.user?.email === "pratikmore408@gmail.com" ? (
                     <Link
                       to={"/dashboard"}
-                      className="text-sm font-medium text-gray-700"
+                      className="text-sm font-medium text-gray-700 hover:text-violet-600"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Admin
@@ -91,7 +92,7 @@ function Navbar() {
                   {user ? (
                     <a
                       onClick={logout}
-                      className="text-sm font-medium text-gray-700 cursor-pointer"
+                      className="text-sm font-medium text-gray-700 cursor-pointer hover:text-violet-600"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
                       Logout
@@ -103,7 +104,10 @@ function Navbar() {
 
                 {/* Country flag */}
                 <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700">
+                  <a
+                    href="#"
+                    className="flex items-center text-gray-700 hover:text-violet-600"
+                  >
                     <img
                       src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
                       alt=""
@@ -119,7 +123,7 @@ function Navbar() {
                 </div>
                 {/* User icon */}
                 <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700">
+                  <a href="#" className="flex items-center text-gray-700 ">
                     {mode === "dark" ? (
                       <FaRegUser className="inline-block w-10 h-10 bg-white rounded-full" />
                     ) : (
