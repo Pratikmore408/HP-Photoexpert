@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Modal({
   name,
@@ -15,6 +16,9 @@ export default function Modal({
 }) {
   let [isOpen, setIsOpen] = useState(false);
   let [isEmptyCartOpen, setIsEmptyCartOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const cartItems = useSelector((state) => state.cart);
 
@@ -30,7 +34,11 @@ export default function Modal({
     if (cartItems.length === 0) {
       setIsEmptyCartOpen(true);
     } else {
-      setIsOpen(true);
+      if (user) {
+        setIsOpen(true);
+      } else {
+        navigate("/login");
+      }
     }
   }
   return (
