@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
-import { FaUserTie } from "react-icons/fa";
+import { FaUserTie, FaShoppingBag, FaRupeeSign } from "react-icons/fa";
+import { MdProductionQuantityLimits } from "react-icons/md";
+
 import myContext from "../../../context/data/myContext";
 import Layout from "../../../components/layout/Layout";
 import DashboardTab from "./DashboardTab";
@@ -7,7 +9,7 @@ import DashboardTab from "./DashboardTab";
 function Dashboard() {
   // Accessing context to get mode
   const context = useContext(myContext);
-  const { mode } = context;
+  const { mode, product, user, order } = context;
 
   return (
     // Layout component wrapping the dashboard section
@@ -28,13 +30,13 @@ function Dashboard() {
                   className="text-purple-500 w-12 h-12 mb-3 inline-block"
                   viewBox="0 0 24 24"
                 >
-                  <FaUserTie size={50} />
+                  <MdProductionQuantityLimits size={50} />
                 </div>
                 <h2
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  10
+                  {product.length}
                 </h2>
                 <p
                   className="text-purple-500 font-bold"
@@ -57,13 +59,13 @@ function Dashboard() {
                   className="text-purple-500 w-12 h-12 mb-3 inline-block"
                   viewBox="0 0 24 24"
                 >
-                  <FaUserTie size={50} />
+                  <FaShoppingBag size={50} />
                 </div>
                 <h2
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  10
+                  {order.length}
                 </h2>
                 <p
                   className="text-purple-500 font-bold"
@@ -92,7 +94,7 @@ function Dashboard() {
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  20
+                  {user.length}
                 </h2>
                 <p
                   className="text-purple-500 font-bold"
@@ -115,19 +117,19 @@ function Dashboard() {
                   className="text-purple-500 w-12 h-12 mb-3 inline-block"
                   viewBox="0 0 24 24"
                 >
-                  <FaUserTie size={50} />
+                  <FaRupeeSign size={50} />
                 </div>
                 <h2
                   className="title-font font-medium text-3xl text-black fonts1"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  20
+                  ₹ 15965
                 </h2>
                 <p
                   className="text-purple-500 font-bold"
                   style={{ color: mode === "dark" ? "white" : "" }}
                 >
-                  Total Products
+                  Total Revenue
                 </p>
               </div>
             </div>
