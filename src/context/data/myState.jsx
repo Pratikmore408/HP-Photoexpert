@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MyContext from "./myContext";
+
 import {
   Timestamp,
   addDoc,
@@ -48,6 +49,7 @@ function myState(props) {
   });
 
   // Function to add a new product
+
   const addProduct = async () => {
     // Validation
     if (
@@ -66,9 +68,6 @@ function myState(props) {
       const productRef = collection(fireDB, "products");
       await addDoc(productRef, products);
       toast.success("Product added successfully");
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 800);
       getProductData();
       setLoading(false);
     } catch (error) {
@@ -118,9 +117,6 @@ function myState(props) {
     try {
       await setDoc(doc(fireDB, "products", products.id), products);
       toast.success("Product updated successfully");
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 800);
       getProductData();
       setLoading(false);
     } catch (error) {
@@ -207,6 +203,7 @@ function myState(props) {
         deleteProduct,
         order,
         user,
+        getProductData,
       }}
     >
       {props.children}

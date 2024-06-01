@@ -7,13 +7,14 @@ import { Link } from "react-router-dom";
 
 function DashboardTab() {
   const context = useContext(myContext);
-  const { mode, product, edithandle, deleteProduct, order, user } = context;
+  const { mode, product, edithandle, deleteProduct, user, getProductData } =
+    context;
 
   // Functions to handle modal open/close
-  const add = () => {
-    // Redirect to add product page
-    window.location.href = "/addproduct";
-  };
+  useEffect(() => {
+    getProductData();
+  }, []);
+
   return (
     <>
       <div className="container mx-auto">
@@ -53,7 +54,6 @@ function DashboardTab() {
                 </h1>
                 <div className=" flex justify-end">
                   <button
-                    onClick={add}
                     type="button"
                     className="focus:outline-none text-white bg-pink-600 shadow-[inset_0_0_10px_rgba(0,0,0,0.6)] border hover:bg-pink-700 outline-0 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
                     style={{
@@ -63,7 +63,9 @@ function DashboardTab() {
                   >
                     {" "}
                     <div className="flex gap-2 items-center">
-                      Add Product <FaCartPlus size={20} />
+                      <Link to={"/addproduct"}>
+                        Add Product <FaCartPlus size={20} />
+                      </Link>
                     </div>
                   </button>
                 </div>
@@ -101,14 +103,7 @@ function DashboardTab() {
                       </tr>
                     </thead>
                     {product.map((item, index) => {
-                      const {
-                        title,
-                        price,
-                        imageUrl,
-                        category,
-                        description,
-                        date,
-                      } = item;
+                      const { title, price, imageUrl, category, date } = item;
                       return (
                         <tbody className="">
                           <tr

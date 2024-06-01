@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
 import myContext from "../../../context/data/myContext";
+import { useNavigate } from "react-router-dom";
 
 function UpdateProduct() {
   const context = useContext(myContext);
   const { products, setProducts, updateProduct } = context;
+  const navigate = useNavigate();
+
+  const handleUpdateProduct = async () => {
+    await updateProduct();
+    navigate("/dashboard");
+  };
+
   return (
     <div>
       <div className=" flex justify-center items-center h-screen">
@@ -76,7 +84,7 @@ function UpdateProduct() {
           </div>
           <div className=" flex justify-center mb-3">
             <button
-              onClick={updateProduct}
+              onClick={handleUpdateProduct}
               className=" bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg"
             >
               Update Product

@@ -1,9 +1,22 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
 import myContext from "../../../context/data/myContext";
+
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
   const context = useContext(myContext);
-  const { products, setProducts, addProduct } = context;
+  const { products, addProduct, setProducts } = context;
+  const navigate = useNavigate();
+
+  function useAddProduct() {
+    addProduct();
+
+    // Navigate to /dashboard without reloading
+
+    navigate("/dashboard");
+  }
+
   return (
     <div>
       <div className="flex justify-center items-center h-screen">
@@ -76,7 +89,7 @@ function AddProduct() {
           </div>
           <div className=" flex justify-center mb-3">
             <button
-              onClick={addProduct}
+              onClick={useAddProduct}
               className=" bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg"
             >
               Add Product
