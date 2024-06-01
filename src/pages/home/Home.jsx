@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout/Layout";
-import AllProductsPage from "../allproducts/AllProducts";
+import Allproducts from "../allproducts/AllProducts";
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
           alt="Home Cover"
         />
       </div>
-      <AllProductsPage />
+      <Allproducts />
     </Layout>
   );
 }

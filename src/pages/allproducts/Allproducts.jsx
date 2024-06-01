@@ -1,6 +1,5 @@
 // Import necessary dependencies and components
 import React, { useContext, useEffect } from "react";
-import Layout from "../../components/layout/Layout";
 import myContext from "../../context/data/myContext";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
