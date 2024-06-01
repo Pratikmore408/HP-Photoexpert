@@ -79,7 +79,6 @@ function Allproducts() {
                     >
                       {title}
                     </h1>
-                    {/* <p className="leading-relaxed mb-3">{item.description.}</p> */}
                     <p
                       className="leading-relaxed mb-3"
                       style={{ color: mode === "dark" ? "white" : "" }}
